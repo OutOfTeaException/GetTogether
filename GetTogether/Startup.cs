@@ -1,7 +1,9 @@
+using GetTogether.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -26,6 +28,8 @@ namespace GetTogether
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddDbContext<GetTogetherContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GetTogether")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +49,8 @@ namespace GetTogether
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 
+            
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
@@ -61,7 +67,8 @@ namespace GetTogether
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start");
+                    //spa.UseAngularCliServer(npmScript: "start");
+                    spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
                 }
             });
         }
