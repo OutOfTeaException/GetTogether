@@ -1,0 +1,16 @@
+@startuml Model
+class Group
+class DateSearch
+class DateProposal
+class Date
+class User
+
+Group "1" -- "*" DateSearch : belongs to <
+DateSearch "1" -- "1" Date : has a final date >
+DateSearch "1" -- "*" DateProposal : has proposals
+Group "*" -- "*" User : belongs to <
+DateSearch "1" -- "1" User : created by >
+DateSearch "1" -- "*" User : partecipants >
+DateProposal "1" -- "1" User : created by >
+
+@enduml
