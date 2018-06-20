@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.EntityFrameworkCore.Proxies;
 
 namespace GetTogether
 {
@@ -29,7 +30,11 @@ namespace GetTogether
                 configuration.RootPath = "ClientApp/dist";
             });
 
-            services.AddDbContext<GetTogetherContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GetTogether")));
+            services.AddDbContext<GetTogetherContext>(options =>
+            {
+                options.UseSqlite(Configuration.GetConnectionString("GetTogether"));
+                options.UseLazyLoadingProxies();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,8 +53,6 @@ namespace GetTogether
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
-
-            
 
             app.UseMvc(routes =>
             {

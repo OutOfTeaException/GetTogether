@@ -10,9 +10,10 @@ namespace GetTogether.Models
         public int Id { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime FinalDate { private get; set; }
-        public DateSearch DateSearch { get; private set; }
+        public virtual DateSearch DateSearch { get; private set; }
+        public int DateSearchId { get; private set; }
 
-        private Date() { }
+        protected Date() { }
 
         public Date(DateTime finalDate, DateSearch dateSearch)
         {

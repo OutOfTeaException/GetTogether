@@ -12,7 +12,7 @@ namespace GetTogether.Models
         public string EMail { get; set; }
         public DateTime CreatedAt { get; private set; }
 
-        private User() { }
+        public virtual ICollection<UserGroup> Groups { get; private set; }
 
         public User(string name, string email)
         {
@@ -20,6 +20,9 @@ namespace GetTogether.Models
             EMail = email;
 
             CreatedAt = DateTime.Now;
+            Groups = new List<UserGroup>();
         }
+
+        protected User() {}
     }
 }

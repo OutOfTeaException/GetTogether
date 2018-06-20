@@ -9,13 +9,13 @@ namespace GetTogether.Models
     {
         public int Id { get; private set; }
         public DateTime CreatedAt { get; private set; }
-        public Group IntoGroup { get; private set; }
-        public User CreatedBy { get; private set; }
+        public virtual Group IntoGroup { get; private set; }
+        public virtual User CreatedBy { get; private set; }
         public string Email { get; private set; }
         public string Message { get; private set; }
         public bool EMailSent { get; set; } = false;
 
-        private Invitation() { }
+        protected Invitation() { }
 
         public Invitation(string email, string message, User createdBy, Group intoGroup)
         {

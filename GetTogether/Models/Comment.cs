@@ -19,8 +19,8 @@ namespace GetTogether.Models
                 LastModifiedAt = DateTime.Now;
             }
         }
-        public User CreatedBy { get; private set; }
-        public DateSearch DateSearch { get; private set; }
+        public virtual User CreatedBy { get; private set; }
+        public virtual DateSearch DateSearch { get; private set; }
         public DateTime CreatedAt { get; private set; }
         public DateTime? LastModifiedAt { get; private set; }
 
@@ -32,5 +32,7 @@ namespace GetTogether.Models
 
             CreatedAt = DateTime.Now;
         }
+
+        protected Comment() { }
     }
 }
