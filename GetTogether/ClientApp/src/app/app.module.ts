@@ -11,6 +11,8 @@ import { HomeComponent } from './home/home.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AdminService } from './service/admin.service';
+import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarDayComponent } from './calendar-day/calendar-day.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { AdminService } from './service/admin.service';
     NavMenuComponent,
     HomeComponent,
     CounterComponent,
-    FetchDataComponent
+    FetchDataComponent,
+    CalendarComponent,
+    CalendarDayComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

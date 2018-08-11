@@ -1,27 +1,23 @@
-import { Injectable, group } from '@angular/core';
-import { Group } from '../model/group';
+import { Injectable, Inject } from '@angular/core';
 import { DateSearch } from '../model/date-search';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import { Group } from '../model/group';
 
 @Injectable()
 export class AdminService {
 
-  private groups: Group[] = [
-    { "id": 1, "name": "Die SpazierGang" },
-    { "id": 2, "name": "Kino" },
-    { "id": 3, "name": "Bla" }
-  ];
-
   private dateSearches: DateSearch[] = [
-    { "id": 1, "groupId": 1, "name": "Altes Land", "description": "Wir wollen zur Kirschblüte im alten Land eine Tagestour machen" },
-    { "id": 2, "groupId": 1, "name": "Lüneburger Heide", "description": "Mal wieder zur Heideblüte :)" },
-    { "id": 3, "groupId": 2, "name": "Deadpool 2", "description": "Böse. :) " },
-    { "id": 4, "groupId": 3, "name": "blablabla", "description": "jadda jadda jadda" }
+    { 'id': 1, 'groupId': 1, 'name': 'Altes Land', 'description': 'Wir wollen zur Kirschblüte im alten Land eine Tagestour machen' },
+    { 'id': 2, 'groupId': 1, 'name': 'Lüneburger Heide', 'description': 'Mal wieder zur Heideblüte :)' },
+    { 'id': 3, 'groupId': 2, 'name': 'Deadpool 2', 'description': 'Böse. :) ' },
+    { 'id': 4, 'groupId': 3, 'name': 'blablabla', 'description': 'jadda jadda jadda' }
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-  getGroups(): Group[] {
-    return this.groups;
+  getGroups(): Observable<Group[]> {
+    return this.http.get<Group[]>(this.baseUrl + '/api/DateSearch/Groups/1');
   }
 
   getDateSearches(groupId: number) {

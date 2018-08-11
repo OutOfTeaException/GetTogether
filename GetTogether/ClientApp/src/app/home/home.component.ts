@@ -15,21 +15,21 @@ export class HomeComponent implements OnInit {
 
   groups: Group[] = [];
   dateSearches: DateSearch[] = [];
-    
+
   selectedGroup: Group = null;
   selectedDateSearch: DateSearch = null;
 
 
   ngOnInit() {
-    this.groups = this.adminService.getGroups();
+    this.adminService.getGroups().subscribe(data => { this.groups = data; });
   }
 
 
   GroupChanged(selectedGroup: Group) {
     this.selectedGroup = selectedGroup;
-    console.log("Gruppe ausgewählt: " + selectedGroup.name);
+    console.log('Gruppe ausgewählt: ' + selectedGroup.name);
     this.dateSearches = this.adminService.getDateSearches(selectedGroup.id);
-    this.selectedDateSearch= null;
+    this.selectedDateSearch = null;
   }
 
   DateSearchChanged(selectedDateSearch: DateSearch) {
