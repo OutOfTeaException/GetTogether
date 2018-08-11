@@ -31,11 +31,20 @@ namespace GetTogether.Data
 
         private void CreateSeedData(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>().HasData(
+                new { Id = 1, Name = "User 1", Email = "User1@test.com", CreatedAt = new DateTime(2018, 05, 01, 12, 00, 00) }
+            );
+
             modelBuilder.Entity<Group>().HasData(
                 new { Id = 1, Name = "Die Wandersleut", CreatedAt = new DateTime(2018, 05, 01, 12, 00, 00) },
                 new { Id = 2, Name = "Kino", CreatedAt = new DateTime(2018, 05, 01, 12, 00, 00) }
                 );
 
+            modelBuilder.Entity<UserGroup>().HasData(
+                new UserGroup { UserId = 1, GroupId = 1},
+                new UserGroup { UserId = 1, GroupId = 2}
+            );
+            
             modelBuilder.Entity<DateSearch>().HasData(
                 new { Id = 1, GroupId = 1, Name = "Lüneburger Heide", Description = "Zur Heideblüte in die Lüneburger Heide", CreatedAt = new DateTime(2018, 05, 01, 12, 00, 00) },
                 new { Id = 2, GroupId = 2, Name = "Deadpool 2", Description = "Sehr böse :)", CreatedAt = new DateTime(2018, 05, 01, 12, 00, 00) }

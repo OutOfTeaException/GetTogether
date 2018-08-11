@@ -3,14 +3,16 @@ using System;
 using GetTogether.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GetTogether.Migrations
 {
     [DbContext(typeof(GetTogetherContext))]
-    partial class GetTogetherContextModelSnapshot : ModelSnapshot
+    [Migration("20180704195652_AddedMoreSeedData")]
+    partial class AddedMoreSeedData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
